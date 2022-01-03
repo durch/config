@@ -28,7 +28,7 @@ setopt    incappendhistory
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -84,12 +84,12 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	zsh-syntax-highlighting
 	kubectl
 	rsync
 	asdf
 )
 
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -140,8 +140,9 @@ alias docker-clean="docker system prune"
 alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
 alias ls=lsd
 alias sed=gsed
+alias brew="arch -arm64 brew"
 
-. $(brew --prefix asdf)/asdf.sh
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -167,6 +168,7 @@ export PATH="/usr/local/sbin:${PATH}"
 export PATH="/usr/local/opt/openjdk/bin:${PATH}"
 export PATH="${GOPATH}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="/opt/homebrew/bin:${PATH}"
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
 	 export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
 fi
@@ -183,5 +185,4 @@ export AWS_SESSION_TOKEN_TTL=12h
 
 complete -o nospace -C /usr/local/bin/mc mc
 
-. /usr/local/opt/asdf/libexec/asdf.sh
 
