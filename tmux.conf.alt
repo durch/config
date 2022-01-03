@@ -1,0 +1,90 @@
+# curl -L -o ~/.tmux.conf http://j.mp/24TzOZg
+
+# remap prefix from 'C-b' to 'C-a'
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+# don't rename windows automatically
+#set-option -g allow-rename off
+
+set -g default-terminal "screen-256color"
+set-option -sa terminal-overrides ',xterm-256color:RGB' 
+
+# split-window
+unbind %
+bind-key -T prefix | split-window -h
+
+unbind \"
+bind-key -T prefix - split-window
+
+bind -n 'M-Left' select-pane -L
+bind -n 'M-Down' select-pane -D
+bind -n 'M-Up' select-pane -U
+bind -n 'M-Right' select-pane -R
+
+# status bar
+#set-option -g status on                # turn the status bar on
+
+# visual notification of activity in other windows
+# setw -g monitor-activity on
+# set -g visual-activity on
+
+#setw -g window-status-format "#I:#W"
+#setw -g window-status-current-format "#I:#W"
+
+# selection to clipboard
+set-option -g mouse off
+#set-clipboard on
+
+#set -g status-left "#{prefix_highlight} >>"
+
+# Default colors
+
+#setw -g window-status-current-style "bg=blue"
+
+# Window titles
+#set-window-option -g window-status-style fg=default
+#set-window-option -g window-status-current-style fg=black,bg=blue
+
+# Pane borders
+#set-option -g pane-border-style fg=default
+#set-option -g pane-active-border-style fg=blue,bright
+
+# Message text
+#set-option -g message-style fg=blue,bg=black
+
+# Copy mode
+set-window-option -g mode-style fg=black,bg=yellow
+
+# Clock mode
+#set-window-option -g clock-mode-colour blue
+#set-window-option -g clock-mode-style 24
+
+#set -g status-right '#{prefix_highlight} |#h| %a %Y-%m-%d %H:%M'
+
+# vi keys
+setw -g mode-keys vi
+
+# copy mode to clipboard
+bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+#set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+#set -g @plugin 'tmux-plugins/tmux-resurrect'
+#set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+#set -g @plugin 'tmux-plugins/tmux-yank'
+#set -g @plugin 'tmux-plugins/tmux-pain-control'
+#set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'jimeh/tmux-themepack'
+
+#set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'
+#set -g @continuum-restore 'on'
+
+set -g @themepack 'powerline/block/cyan'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

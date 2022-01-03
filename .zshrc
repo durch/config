@@ -17,6 +17,9 @@ export HISTFILE="/Users/drazen/.zsh_history"
 export HISTSIZE=500000
 export SAVEHIST=100000
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.data"
+
 setopt    sharehistory
 setopt    incappendhistory
 
@@ -121,7 +124,6 @@ alias zr='source ~/.zshrc'
 alias te='vim ~/.tmux.conf'
 alias tR='tmux source ~/.tmux.conf'
 alias pe='vim ~/.p10k.zsh'
-alias tmux='TERM=xterm-256color tmux'
 alias ls=exa
 alias cat=bat
 alias clip=pbcopy
@@ -161,9 +163,17 @@ export LANGUAGE=en_US.UTF-8
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export PATH="/usr/local/sbin:${PATH}"
+export PATH="/usr/local/opt/openjdk/bin:${PATH}"
 export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
+if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
+	 export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
+fi
+
+
+
+export AWS_SESSION_TOKEN_TTL=12h
 
 #source "$HOME/playground/emsdk/emsdk_env.sh"
 
@@ -172,3 +182,6 @@ export PATH="${GOPATH}/bin:${PATH}"
 # eval "$(pyenv init -)"
 
 complete -o nospace -C /usr/local/bin/mc mc
+
+. /usr/local/opt/asdf/libexec/asdf.sh
+

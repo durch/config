@@ -21,10 +21,10 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
+  TERM: xterm-256color 
 
 window:
-  dynamic_padding: true
+  #dynamic_padding: true
 
 # Window decorations
 #
