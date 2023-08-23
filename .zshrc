@@ -8,6 +8,8 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export PATH="/Users/drazen/.local/share/solana/install/active_release/bin:$PATH"
+export PATH="/Users/drazen/flutter/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/drazen/.oh-my-zsh"
 export ZSH_DISABLE_COMPFIX='true'
@@ -22,6 +24,11 @@ export XDG_DATA_HOME="$HOME/.data"
 
 setopt    sharehistory
 setopt    incappendhistory
+
+# zsh fsf history search #https://github.com/joshskidmore/zsh-fzf-history-search
+export ZSH_FZF_HISTORY_SEARCH_EVENT_NUMBERS=0
+export ZSH_FZF_HISTORY_SEARCH_DATES_IN_SEARCH=0
+export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -86,12 +93,10 @@ plugins=(
 	git
 	kubectl
 	rsync
-	asdf
+	zsh-fzf-history-search #https://github.com/joshskidmore/zsh-fzf-history-search
 )
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -119,7 +124,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias tarsnap="tarsnap --keyfile ${HOME}/tarsnap.key"
 alias ze='vim ~/.zshrc'
+alias se='vim ~/.ssh/config'
 alias zr='source ~/.zshrc'
 alias te='vim ~/.tmux.conf'
 alias tR='tmux source ~/.tmux.conf'
@@ -127,7 +134,7 @@ alias pe='vim ~/.p10k.zsh'
 alias ls=exa
 alias cat=bat
 alias clip=pbcopy
-alias z='unset AWS_VAULT && aws-vault exec zapier -- '
+alias z='unset AWS_VAULT && aws-vault exec monolith-prod-data-admins -- '
 alias vault-server='aws-vault exec zapier --server'
 alias zl='aws-vault login zapier'
 alias za='aws-vault exec admin --'
@@ -140,22 +147,17 @@ alias docker-clean="docker system prune"
 alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
 alias ls=lsd
 alias sed=gsed
-alias brew="arch -arm64 brew"
+alias brew="arch -arm64 /opt/homebrew/bin/brew"
+alias xbrew="arch -x86_64 /usr/local/bin/brew"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+export NPM_TOKEN=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
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(direnv hook zsh)"
-
-#if [ -r $(brew --prefix)/opt/mcfly/mcfly.zsh ]; then
-#    . $(brew --prefix)/opt/mcfly/mcfly.zsh
-#fi
 
 export GOPATH=~/go
 export KUBE_HOME=${HOME}/.kube
 
-eval $(thefuck --alias)
 alias fck=fuck
 
 export LC_ALL=en_US.UTF-8
@@ -163,26 +165,43 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bitcomplete bit
+#complete -o nospace -C /usr/local/bin/bitcomplete bit
 export PATH="/usr/local/sbin:${PATH}"
 export PATH="/usr/local/opt/openjdk/bin:${PATH}"
 export PATH="${GOPATH}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="/opt/homebrew/bin:${PATH}"
+export PATH="/usr/local/bin:${PATH}"
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
 	 export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
 fi
-
-
+export PATH="/Users/drazen/.asdf/installs/poetry/1.3.1/bin:$PATH"
 
 export AWS_SESSION_TOKEN_TTL=12h
-
-#source "$HOME/playground/emsdk/emsdk_env.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # eval "$(pyenv init -)"
 
-complete -o nospace -C /usr/local/bin/mc mc
+export OPENSSL_DIR=/usr/local/Cellar/openssl@3/3.0.2
 
+export PATH="$HOME/.poetry/bin:$PATH"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/drazen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/drazen/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/drazen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/drazen/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+eval "$(direnv hook zsh)"
+eval $(thefuck --alias)
+
+source $ZSH/oh-my-zsh.sh
+export PATH="/opt/homebrew/sbin:$PATH"
+
+alias clippy="cargo clippy"
+alias fmt="cargo fmt"
