@@ -150,8 +150,6 @@ alias sed=gsed
 alias brew="arch -arm64 /opt/homebrew/bin/brew"
 alias xbrew="arch -x86_64 /usr/local/bin/brew"
 
-export NPM_TOKEN=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
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
