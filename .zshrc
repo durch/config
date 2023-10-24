@@ -124,6 +124,8 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+autoload -U +X bashcompinit && bashcompinit
+
 alias tarsnap="tarsnap --keyfile ${HOME}/tarsnap.key"
 alias ze='vim ~/.zshrc'
 alias se='vim ~/.ssh/config'
@@ -134,64 +136,52 @@ alias pe='vim ~/.p10k.zsh'
 alias ls=exa
 alias cat=bat
 alias clip=pbcopy
-alias z='unset AWS_VAULT && aws-vault exec monolith-prod-data-admins -- '
-alias vault-server='aws-vault exec zapier --server'
-alias zl='aws-vault login zapier'
-alias za='aws-vault exec admin --'
-alias zal='aws-vault login admin'
 alias lv='source venv/bin/activate'
-alias ecr_login='aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 996097627176.dkr.ecr.us-east-1.amazonaws.com'
-alias zk='z kubectl'
 alias rg="rg -S"
 alias docker-clean="docker system prune"
-alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
 alias ls=lsd
 alias sed=gsed
 alias brew="arch -arm64 /opt/homebrew/bin/brew"
 alias xbrew="arch -x86_64 /usr/local/bin/brew"
+alias clippy="cargo clippy"
+alias fmt="cargo fmt"
+alias cx="cargo xtask"
+alias fck=fuck
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
 export GOPATH=~/go
 export KUBE_HOME=${HOME}/.kube
-
-alias fck=fuck
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-autoload -U +X bashcompinit && bashcompinit
-#complete -o nospace -C /usr/local/bin/bitcomplete bit
 export PATH="/usr/local/sbin:${PATH}"
 export PATH="/usr/local/opt/openjdk/bin:${PATH}"
 export PATH="${GOPATH}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="/opt/homebrew/bin:${PATH}"
 export PATH="/usr/local/bin:${PATH}"
+
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
 	 export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
 fi
-export PATH="/Users/drazen/.asdf/installs/poetry/1.3.1/bin:$PATH"
 
 export AWS_SESSION_TOKEN_TTL=12h
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+#export OPENSSL_DIR=/usr/local/Cellar/openssl@3/3.0.2
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# eval "$(pyenv init -)"
-
-export OPENSSL_DIR=/usr/local/Cellar/openssl@3/3.0.2
-
-export PATH="$HOME/.poetry/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/drazen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/drazen/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/drazen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/drazen/google-cloud-sdk/completion.zsh.inc'; fi
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
@@ -199,7 +189,3 @@ eval "$(direnv hook zsh)"
 eval $(thefuck --alias)
 
 source $ZSH/oh-my-zsh.sh
-export PATH="/opt/homebrew/sbin:$PATH"
-
-alias clippy="cargo clippy"
-alias fmt="cargo fmt"
