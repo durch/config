@@ -1,6 +1,6 @@
 tools: brew rustup
 shell: ohmyzsh p10k syntax	
-utils: direnv lsd thefuck asdf tmux mosh ripgrep bat gsed openssl
+utils: gh direnv lsd thefuck asdf tmux mosh ripgrep bat gsed openssl
 asdf-plugins: asdf-python asdf-node
 
 # Tools
@@ -21,6 +21,9 @@ syntax:
 	arch -arm64 brew install zsh-syntax-highlighting
 
 # Utils
+gh:
+	brew install gh
+
 direnv: 
 	arch -arm64 brew install direnv
 
