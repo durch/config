@@ -35,7 +35,6 @@ export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -133,15 +132,14 @@ alias zr='source ~/.zshrc'
 alias te='vim ~/.tmux.conf'
 alias tR='tmux source ~/.tmux.conf'
 alias pe='vim ~/.p10k.zsh'
-alias ls=exa
 alias cat=bat
 alias clip=pbcopy
 alias lv='source venv/bin/activate'
 alias rg="rg -S"
 alias docker-clean="docker system prune"
-alias ls=lsd
-alias sed=gsed
-alias brew="arch -arm64 /opt/homebrew/bin/brew"
+alias ls='lsd'
+alias sed='gsed'
+alias brew="/opt/homebrew/bin/brew"
 alias xbrew="arch -x86_64 /usr/local/bin/brew"
 alias clippy="cargo clippy"
 alias fmt="cargo fmt"
@@ -177,15 +175,10 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/drazen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/drazen/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/drazen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/drazen/google-cloud-sdk/completion.zsh.inc'; fi
-
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 eval "$(direnv hook zsh)"
 eval $(thefuck --alias)
 
 source $ZSH/oh-my-zsh.sh
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme

@@ -15,7 +15,7 @@ ohmyzsh:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 p10k:
-	arch -arm64 brew install p10k
+	brew install powerlevel10k
 
 syntax:
 	arch -arm64 brew install zsh-syntax-highlighting
@@ -35,6 +35,9 @@ asdf:
 
 tmux:
 	arch -arm64 brew install tmux
+
+tpm:
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 mosh:
 	arch -arm64 brew install mosh
